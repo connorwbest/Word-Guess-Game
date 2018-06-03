@@ -11,6 +11,9 @@ var wins = 0;
 var start = function () {
     arrayWordState = [];
     rightGuessCounter = 0;
+    wins = 0;
+    guessLeft = 9;
+    arrayGuessed = [];
     console.log("click");
     arrayWord = words[Math.floor(Math.random() * words.length)];
     console.log(arrayWord.length);
@@ -21,6 +24,7 @@ var start = function () {
         //console.log(arrayWordState);
     };
     document.getElementById("word-blanks").innerHTML = arrayWordState;
+    document.getElementById("guessesleft").innerHTML = ("Guesses Left: " + guessLeft);
 }
 
 // Button to initiate start function
@@ -45,29 +49,60 @@ $("#startgame").on("click", function () {
             };
         } else {
             guessLeft--;
+            document.getElementById("guessesleft").innerHTML = ("Guesses Left: " + guessLeft);
         }
 
     };
     // Function for checking if user Wins or Loses
     var winLose = function(){
         if (rightGuessCounter == arrayWordState.length) {
-            alert("You win!");
+            alert("You win! The word was " + arrayWord);
             wins++;
             document.getElementById("Win").innerHTML = ("Wins: " + wins);
-
+            
+            reset();
         }
 
         else if(guessLeft == 0){
             alert("You lose!");
+
+            reset();
         }
         
     }
+
+    var reset = function(){
+        arrayWordState = [];
+        arrayWord = [];
+        rightGuessCounter = 0;
+        guessLeft = 9;
+        arrayGuessed = [];
+
+        arrayWord = words[Math.floor(Math.random() * words.length)];
+    console.log(arrayWord.length);
+    console.log(arrayWord);
+    for (i = 0; i < arrayWord.length; i++) {
+        //arrayWord = words[0].split("");
+        arrayWordState.push("_");
+        //console.log(arrayWordState);
+    };
+    document.getElementById("word-blanks").innerHTML = arrayWordState;
+    document.getElementById("guessesleft").innerHTML = ("Guesses Left: " + guessLeft);
+    document.getElementById("guesses").innerHTML = ("Letters Already Guessed: " + arrayGuessed);
+
+
+
+    };
 
     // Listens for user input and executes compare function, then executes winLose function
     document.onkeyup = function userSelect(event) {
         event.preventDefault();
         userGuess = event.key.toLowerCase();
+        arrayGuessed.push(userGuess);
+        console.log(arrayGuessed);
         compare(userGuess);
+        document.getElementById("guesses").innerHTML = ("Letters Already Guessed: " + arrayGuessed);
+
 
 
         console.log(guessLeft);
