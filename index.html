@@ -7,7 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-    <script  type="text/javascript" src="./assets/javascript/game.js"></script>
+    
+    
 </head>
 <body>
     <div id="container">
@@ -15,10 +16,10 @@
             <h1>Guess the State!</h1>
         </div>
         <div id="guessgame">
-            <h2>Press Enter to begin!</h2>
+            <h2><button id="startgame">Click to start the Game!</button></h2>
             <h2 id="word-blanks">_,_,_,_</h2>
-            <h3>Wins:</h3>
-            <h3>Guesses Remaining:</h3>
+            <h3 id="Win" >Wins:</h3>
+            <h3 id="guessesleft">Guesses Remaining:</h3>
             <h3>Letters Already Guessed:</h3>
 
         </div>
@@ -30,6 +31,8 @@
 
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script  type="text/javascript" src="./assets/javascript/game.js"></script>
     
 </body>
 </html>
